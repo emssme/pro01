@@ -1,0 +1,40 @@
+1) project 추가 : pro01   //d:kim/pro01/pro01
+
+2) add framework .... // web 추가
+
+3) select Run/Debug configuration Tomcat 9 추가
+
+4) open module settings -> 
+javax.servletXXXX_4.0.1.jar 추가
+mariadb-java-client-3.1.4.jar 추가
+
+5) web/WEB-INF/lib 폴더를 만들고, 
+javax.servletXXXX_4.0.1.jar 복사하여 붙여넣기
+tomcat-servlet-api-9.0.78.jar 복사하여 붙여넣기
+mariadb-java-client-3.1.4.jar 복사하여 붙여넣기
+
+6) web/head.jsp 작성(index.html에 있는 메타포,오픈그래프,파비콘,css라이브러리,js라이브러리 코드 등을 복사하여 붙여넣기...path를 등록하여 위치 맞추기)
+images 디렉토리 및 동영상, css 등 모든 리소스 디렉토리 복사하여
+web 디렉토리에 복사하여 붙여넣기
+
+7) web/index.jsp에 <head></head> 사이(title 태그 밑)에 <%@ include file="head.jsp" %> 인클루드
+
+8) web/header.jsp 작성(index.html 에 있는 header 태그 안의 소스 코드를 모두 복사하여 붙여넣기)
+
+9) web/footer.jsp 작성(index.html 에 있는 footer 태그 안의 소스 코드를 모두 복사하여 붙여넣기)
+
+9) web/index.jsp 에 아래와 같이 인클루드
+<header class="hd" id="hd">
+	<%@ include file="header.jsp" %> 
+</header>
+<div class="contents">
+	....//index.html의 contents 클래스의 내용을 붙여 넣기
+</div>
+<footer class="ft" id="ft">
+	<%@ include file="footer.jsp" %> 
+</footer>
+
+
+
+
+
