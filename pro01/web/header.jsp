@@ -74,7 +74,7 @@
                     <li class="item5">
                         <a href="" class="dp1">커뮤니티</a>
                         <ul class="sub">
-                            <li><a href="">서브01</a></li>
+                            <li><a href="/board/boardList.jsp">공지사항</a></li>
                             <li><a href="">서브02</a></li>
                             <li><a href="">서브03</a></li>
                             <li><a href="">서브04</a></li>
