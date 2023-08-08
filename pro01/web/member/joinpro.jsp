@@ -1,9 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <%@ page import="java.sql.*" %>
-<%@ page import="java.util.*" %>
 <%@ page import="com.chunjae.db.*" %>
-<%@ page import="com.chunjae.dto.*" %>
+<%@include file="../encoding.jsp"%>
 <%
+    
     String id = request.getParameter("id");
     String pw = request.getParameter("pw");
     String pw2 = request.getParameter("pw2");
