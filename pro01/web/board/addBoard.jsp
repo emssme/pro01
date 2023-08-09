@@ -65,28 +65,47 @@
     </style>
 </head>
 <body>
-<form action="addBoard.jsp" method="post">
-    <table class="btn">
-        <tbody>
-        <tr>
-            <th><label for="title">글제목</label></th>
-            <td>
-                <input type="text" name="title" id="title" class="indata" required>
-                <input type="hidden" name="author" id="author" value="<%=sid %>">
-            </td>
-        </tr>
-        <tr>
-            <th>글내용</th>
-            <td><textarea class="indata2" name="content" id="content" cols="80" rows="10" maxlength="990" required></textarea></td>
-        </tr>
-        <tr>
-            <td colspan="2">
-                <input type="submit" value="글쓰기" class="inbtn">
-                <input type="reset" value="취소" class="inbtn">
-            </td>
-        </tr>
-        </tbody>
-    </table>
-</form>
+<div class="container">
+    <header class="hd" id="hd">
+        <%@ include file="../header.jsp"%>
+    </header>
+    <div class="contents" id="contents">
+        <div class="breadcrumb">
+            <p><a href="/">HOME</a> &gt; <a href="/board/boardList.jsp">공지사항</a> &gt; <span>공지사항 글쓰기</span></p>
+        </div>
+    <section class="page" id="page1">
+        <div class="page_wrap">
+            <h2 class="page_tit">공지사항 글쓰기</h2>
+            <hr>
+            <form action="addBoardPro.jsp" method="post">
+                <table class="tb1">
+                    <tbody>
+                    <tr>
+                        <th><label for="title">글제목</label></th>
+                        <td>
+                            <input type="text" name="title" id="title" class="indata" required>
+                            <input type="hidden" name="author" id="author" value="<%=sid %>">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th><label for="content">글내용</label></th>
+                        <td><textarea class="indata2" name="content" id="content" cols="80" rows="10" maxlength="990" required></textarea></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <input type="submit" value="글쓰기" class="inbtn">
+                            <input type="reset" value="취소" class="inbtn">
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </form>
+        </div>
+    </section>
+    </div>
+</div>
+<footer class="ft" id="ft">
+    <%@include file="../footer.jsp"%>
+</footer>
 </body>
 </html>
