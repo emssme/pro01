@@ -18,6 +18,8 @@
     <script src="https://code.jquery.com/jquery-latest.js"></script>
     <link rel="stylesheet" href="../common.css">
     <link rel="stylesheet" href="../hd.css">
+    <link rel="stylesheet" href="../ft.css">
+
     <style>
         /* 본문 영역 스타일 */
         .contents { clear:both; min-height:100vh;
@@ -56,7 +58,6 @@
         .inbtn:last-child { float:right; }
     </style>
 
-    <link rel="stylesheet" href="../ft.css">
     <style>
         .btn_group { clear:both; width:800px; margin:20px auto; }
         .btn_group:after { content:""; display:block; width:100%; clear: both; }
@@ -76,7 +77,7 @@
         </tr>
         <tr>
             <th>글내용</th>
-            <td><textarea name="content" id="content" cols="80" rows="10" maxlength="990" required></textarea></td>
+            <td><textarea class="indata2" name="content" id="content" cols="80" rows="10" maxlength="990" required></textarea></td>
         </tr>
         <tr>
             <td colspan="2">

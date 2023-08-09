@@ -53,6 +53,7 @@
     <script src="https://code.jquery.com/jquery-latest.js"></script>
     <link rel="stylesheet" href="../common.css">
     <link rel="stylesheet" href="../hd.css">
+    <link rel="stylesheet" href="../ft.css">
     <style>
         /* 본문 영역 스타일 */
         .contents { clear:both; min-height:100vh;
@@ -126,20 +127,22 @@
                             Date d = ymd.parse(qna.getResdate());    //날짜 데이터로 변경
                             String date = ymd.format(d);    //형식을 포함한 문자열로 변경
                     %>
-                    <td class="item1"><%=tot%></td>
-                    <td class="item2">
+                    <tr></tr>
+                        <td class="item1"><%=tot%></td>
+                        <td class="item2">
+                            <%
+                                if(qna.getLev()==0) { %>
+                                    <a href="/qna/getQna.jsp?qno=<%=qna.getQno()%>"><%=qna.getTitle()%></a>
+                            <% } else { %>
+                                    <a style="padding-left: 28px" href="/qna/getQna.jsp?qno=<%=qna.getQno()%>">[답변]<%=qna.getTitle()%></a>
+                            <% } %>
+                        </td>
+                        <td class="item3"><%=qna.getAuthor()%></td>
+                        <td class="item4"><%=date%></td>
                         <%
-                            if(qna.getLev()==0) { %>
-                                <a href="/qna/getQna.jsp?qno=<%=qna.getQno()%>"><%=qna.getTitle()%></a>
-                        <% } else { %>
-                                <a style="padding-left: 28px" href="/qna/getQna.jsp?qno=<%=qna.getQno()%>">[답변]<%=qna.getTitle()%></a>
-                        <% } %>
-                    </td>
-                    <td class="item3"><%=qna.getAuthor()%></td>
-                    <td class="item4"><%=date%></td>
-                    <%
-                        }
-                    %>
+                            }
+                        %>
+                    </tr>
                     </tbody>
                 </table>
                 <script>
@@ -152,9 +155,6 @@
             </div>
         </seciton>
     </div>
-    <footer class="ft" id="ft">
-        <%@include file="../footer.jsp"%>
-    </footer>
     <footer class="ft" id="ft">
         <%@include file="../footer.jsp"%>
     </footer>

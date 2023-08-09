@@ -10,29 +10,30 @@
     int qno = Integer.parseInt(request.getParameter("qno"));
     String title = request.getParameter("title");
     String content = request.getParameter("content");
+    String author = request.getParameter("author");
 
     Connection conn = null;
     PreparedStatement pstmt = null;
-    ResultSet rs = null;
 
     int cnt = 0;
 
     DBC con = new MariaDBCon();
     conn = con.connect();
 
-    String sql = "update qua set title = ? content = ? where bno=?";
+    String sql = "update qua set title=?, content=? where bno=?";
     pstmt = con.connect().prepareStatement(sql);
     pstmt.setString(1, title);
     pstmt.setString(2, content);
     pstmt.setInt(3,qno);
 
-    Qna qbd = new Qna();
+    Qna qna = new Qna();
+
     if(cnt>0) {
         response.sendRedirect("/qna/qnaList.jsp");
     } else {
         response.sendRedirect("/qna/updateQna.jsp?qno"+qno);
     }
-    con.close(rs, pstmt, conn);
+    con.close(pstmt, conn);
 
 %>
 <!DOCTYPE html>
@@ -58,6 +59,8 @@
         <script src="https://code.jquery.com/jquery-latest.js"></script>
         <link rel="stylesheet" href="../common.css">
         <link rel="stylesheet" href="../hd.css">
+        <link rel="stylesheet" href="../ft.css">
+
         <style>
             /* 본문 영역 스타일 */
             .contents { clear:both; min-height:100vh;
@@ -95,7 +98,6 @@
             .inbtn:last-child { float:right; }
         </style>
 
-        <link rel="stylesheet" href="../ft.css">
 </head>
 <body>
     <header class="hd" id="hd">
@@ -109,28 +111,36 @@
             <div class="page_wrap">
                 <h2 class="page_tit">질문과 답변 수정하기</h2>
                 <hr>
-                <form action="updateQnaPro.jsp" method="poste">
+                <form action="updateQnaPro.jsp" method="post">
                     <table class="tb1">
                         <tbody>
                         <tr>
                             <th>글번호</th>
-                            <td><input type="text" name="qno" id="qno" class="indata" value="<%=qbd.getQno()%>" required></td>
+                            <td><input type="text" name="qno" id="qno" class="indata" value="<%=qna.getQno()%>" required></td>
                         </tr>
                         <tr>
                             <th>글제목</th>
-                            <td><input type="text" name="title" id="title" class="indata" value="<%=qbd.getTitle()%>" required></td>
+                            <td><input type="text" name="title" id="title" class="indata" value="<%=qna.getTitle()%>" required></td>
                         </tr>
                         <tr>
                             <th>글내용</th>
-                            <td><textarea rows="10" cols="80" name="content" id="content" class="indata2"><%=qbd.getContent() %></textarea></td>
+                            <td><textarea rows="10" cols="80" name="content" id="content" class="indata2"><%=qna.getContent() %></textarea></td>
                         </tr>
                         <tr>
                             <td colspan="2">
-
+                                <%-- 6. 수정하기(submit)을 누르면, 수정처리로 넘기기 --%>
+                                <a href="/qna/qnaList.jsp" class="inbtn">글 목록</a>
+                                <% if(sid.equals("admin") || sid.equals(qna.getAuthor())) { %>
+                                <input type="submit" value="글수정" class="inbtn">
+                                <a href="/qna/delQna.jsp?qno=<%=qna.getQno() %>" class="inbtn">글 삭제</a>
+                                <% } %>
                             </td>
                         </tr>
                         </tbody>
                     </table>
                 </form>
+            </div>
+        </seciton>
+    </div>
 </body>
 </html>

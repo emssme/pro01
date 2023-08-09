@@ -49,6 +49,7 @@
     <script src="https://code.jquery.com/jquery-latest.js"></script>
     <link rel="stylesheet" href="../common.css">
     <link rel="stylesheet" href="../hd.css">
+    <link rel="stylesheet" href="../ft.css">
     <style>
         /* 본문 영역 스타일 */
         .contents { clear:both; min-height:100vh;
@@ -86,7 +87,6 @@
         .inbtn:last-child { float:right; }
     </style>
 
-    <link rel="stylesheet" href="../ft.css">
 </head>
 <body>
 <div class="container">

@@ -43,7 +43,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>공지사항 목록</title>
-    <%@include file="../head.jsp"%>
+    <%@ include file="../head.jsp" %>
     <!-- 스타일 초기화 : reset.css 또는 normalize.css -->
     <link href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css" rel="stylesheet">
 
@@ -55,6 +55,7 @@
     <script src="https://code.jquery.com/jquery-latest.js"></script>
     <link rel="stylesheet" href="../common.css">
     <link rel="stylesheet" href="../hd.css">
+    <link rel="stylesheet" href="../ft.css">
     <style>
         /* 본문 영역 스타일 */
         .contents { clear:both; min-height:100vh;
@@ -75,18 +76,18 @@
         .breadcrumb a { color:#fff; }
         .frm { clear:both; width:1200px; margin:0 auto; padding-top: 80px; }
 
-        .tb1 { width:500px; margin:50px auto; }
-        .tb1 th { width:180px; line-height:32px; padding-top:8px; padding-bottom:8px;
+        .tb1 { width:800px; margin:50px auto; }
+        .tb1 th { line-height:32px; padding-top:8px; padding-bottom:8px;
             border-top:1px solid #333; border-bottom:1px solid #333;
             background-color:deepskyblue; color:#fff; }
-        .tb1 td { width:310px; line-height:32px; padding-top:8px; padding-bottom:8px;
+        .tb1 td {line-height:32px; padding-top:8px; padding-bottom:8px;
             border-bottom:1px solid #333;
             padding-left: 14px; border-top:1px solid #333; }
 
-        .tb1 .item1 { width: 5%;}
-        .tb2 .item3 { width: 70%;}
-        .tb3 .item3 { width: 10%;}
-        .tb4 .item4 { width: 15%;}
+        .tb1 .item1 { width:10%; text-align: center; }
+        .tb1 .item2 { width:65%; }
+        .tb1 .item3 { width:10%; text-align: center; }
+        .tb1 .item4 { width:15%; text-align: center; }
 
         .indata { display:inline-block; width:300px; height: 48px; line-height: 48px;
             text-indent:14px; font-size:18px; }
@@ -96,7 +97,13 @@
         .inbtn:first-child { float:left; }
         .inbtn:last-child { float:right; }
     </style>
-    <!--jquery paging 처리-->
+
+    <style>
+        .btn_group { clear:both; width:800px; margin:20px auto; }
+        .btn_group:after { content:""; display:block; width:100%; clear: both; }
+        .btn_group p {text-align: center;   line-height:3.6; }
+    </style>
+
     <link rel="stylesheet" href="../jquery.dataTables.css">
     <script src="../jquery.dataTables.js"></script>
 </head>
@@ -112,7 +119,7 @@
         <seciton class="page" id="page1">
             <div class="page_wrap">
                 <h2 class="page_tit">공지사항 목록</h2>
-                <hr>
+                <br><br><hr><br><br>
                 <table class="tb1" id="myTable">
                     <thead>
                     <th class="item1">글번호</th>
@@ -127,17 +134,19 @@
                                 Date d = ymd.parse(bd.getResdate());    //날짜 데이터로 변경
                                 String date = ymd.format(d);    //형식을 포함한 문자열로 변경
                         %>
-                        <td class="item1"><%=bd.getBno()%></td>
-                        <td class="item2">
-                            <%
-                                if(sid != null) { %>
-                            <a href="/board/getBoard.jsp?bno=<%=bd.getBno()%>"><%=bd.getTitle()%></a>
-                            <% } else { %>
-                            <span><%=bd.getTitle()%></span>
-                            <% } %>
-                        </td>
-                        <td class="item3"><%=bd.getAuthor()%></td>
-                        <td class="item4"><%=bd.getResdate()%></td>
+                        <tr>
+                            <td class="item1"><%=bd.getBno()%></td>
+                            <td class="item2">
+                                <%
+                                    if(sid != null) { %>
+                                <a href="/board/getBoard.jsp?bno=<%=bd.getBno()%>"><%=bd.getTitle()%></a>
+                                <% } else { %>
+                                <span><%=bd.getTitle()%></span>
+                                <% } %>
+                            </td>
+                            <td class="item3"><%=bd.getAuthor()%></td>
+                            <td class="item4"><%=bd.getResdate()%></td>
+                        </tr>
                    <%
                        }
                    %>
@@ -146,10 +155,20 @@
                 <script>
                     $(document).ready( function () {
                         $('#myTable').DataTable({
-                            order:[[0,"desc"]]
+                            order:[[0, "desc"]]
                         });
-                    } );
+                    });
                 </script>
+                <div class="btn_group">
+                    <br><hr><br>
+                    <%-- 공지사항이므로 관리자만 글 추가 기능(링크)이 적용되도록 설정 --%>
+                    <% if(sid!=null && sid.equals("admin")) { %>
+                    <a href="/board/addBoard.jsp" class="inbtn">글쓰기</a>
+                    <% } else { %>
+                    <p>관리자만 공지사항의 글을 쓸 수 있습니다.<br>
+                        로그인한 사용자만 글의 상세내용을 볼 수 있습니다.</p>
+                    <% } %>
+                </div>
             </div>
         </seciton>
     </div>

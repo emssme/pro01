@@ -76,7 +76,7 @@
                         <ul class="sub">
                             <li><a href="/board/boardList.jsp">공지사항</a></li>
                             <li><a href="/qna/qnaList.jsp">질문과 답변</a></li>
-                            <li><a href="">서브03</a></li>
+                            <li><a href="/faq/faqList.jsp">FAQ</a></li>
                             <li><a href="">서브04</a></li>
                         </ul>
                     </li>

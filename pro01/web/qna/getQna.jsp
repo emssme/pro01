@@ -1,10 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <%@ page import ="java.sql.*"%>
-<%@ page import ="java.util.*"%>
 <%@ page import ="com.chunjae.db.*"%>
-<%@ page import ="com.chunjae.dto.*"%>
 <%@ page import="com.chunjae.vo.Qna" %>
-<%@ page import="com.sun.jna.platform.unix.X11" %>
 <%@ include file="../encoding.jsp"%>
 
 <%
@@ -55,6 +52,7 @@
     <script src="https://code.jquery.com/jquery-latest.js"></script>
     <link rel="stylesheet" href="../common.css">
     <link rel="stylesheet" href="../hd.css">
+    <link rel="stylesheet" href="../ft.css">
     <style>
         /* 본문 영역 스타일 */
         .contents { clear:both; min-height:100vh;
@@ -104,31 +102,23 @@
             <p><a href="/">HOME</a> &gt; <a href="/qna/qnaList.jsp">질문과 답변</a> &gt; <span>질문과 답변 상세보기</span></p>
         </div>
         <section class="page" id="page1">
-            <div class="page_wrqp">
+            <div class="page_wrap">
                 <h2 class="page_tit">질문과 답변 상세보기</h2>
                 <hr>
                 <table class="tb1">
                     <tbody>
                     <!--해당 글 번호에 상세 내용 출력-->
                     <tr>
+                        <th>글 번호</th>
+                        <td><input type="text" name="qno" id="qno" class="indata" value="<%=qna.getTitle()%>" readonly></td>
+                    </tr>
+                    <tr>
                         <th>글 제목</th>
-                        <td><%=qna.getTitle()%></td>
+                        <td><input type="text" name="title" id="title" class="indata" value="<%=qna.getContent()%>" required></td>
                     </tr>
                     <tr>
                         <th>글 내용</th>
-                        <td><%=qna.getContent()%></td>
-                    </tr>
-                    <tr>
-                        <th>작성자</th>
-                        <td><%=qna.getAuthor()%></td>
-                    </tr>
-                    <tr>
-                        <th>작성일</th>
-                        <td><%=qna.getResdate()%></td>
-                    </tr>
-                    <tr>
-                        <th>조회수</th>
-                        <td><%=qna.getCnt()%></td>
+                        <td><textarea rows="10" cols="80" name="content" id="content" class="indata2"><%=qna.getAuthor()%></textarea></td>
                     </tr>
                     <tr>
                         <th colspan="2"></th>
@@ -142,12 +132,9 @@
                             <% } %>
                             <%if (sid!=null && (sid.equals("admin") || sid.equals(qna.getAuthor()))){%>
                             <a href="/qna/updateQna.jsp?qno=<%=qna.getQno()%>" class="inbtn">질문 수정하기</a>
-                            <a href="/qna/delQna.jsp?qno=<%=qna.getQno()%>" class="inbtn">질문 삭제하기</a>
+                            <a href="/qna/delQna.jsp?qno=<%=qna.getQno()%>&lev=0" class="inbtn">질문 삭제하기</a>
                             <% } %>
                         <%} else {%>
-                            <%
-
-                            %>
                         </td>
                     </tr>
                     </tbody>
