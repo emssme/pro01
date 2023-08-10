@@ -17,11 +17,11 @@
     //4. smtp 설정 -> Properties 활용
     Properties p = new Properties();
     p.put("mail.smtp.host","smtp.naver.com");                                   //smtp 서버명
-    p.put("mail.smtp.port","587");                                              //smtp 포트번호
+    p.put("mail.smtp.port","465");                                              //smtp 포트번호
     p.put("mail.smtp.starttles.enable","true");                                 //smtp 시작시 알려주게 설정
     p.put("mail.smtp.auth","true");                                             //smtp 인증 설정
     p.put("mail.smtp.debug","true");                                            //smtp 디버그 설정
-    p.put("mail.smtp.socketFactory.port","587");                                //smtp 소켓 포트 설정
+    p.put("mail.smtp.socketFactory.port","465");                                //smtp 소켓 포트 설정
     p.put("mail.smtp.socketFactory.class","javax.net.ssl.SSLSocketFactory");    //smtp 소켓 ssl 설정
     p.put("mail.smtp.socketFactory.fallback","false");                          //smtp 소켓 fallback 설정
 
@@ -61,6 +61,7 @@
     }finally {
         response.sendRedirect("/index.jsp");
     }
+
 
 
 %>

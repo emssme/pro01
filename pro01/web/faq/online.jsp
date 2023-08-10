@@ -74,7 +74,7 @@
             <div class="page_wrap">
                 <h2 class="page_tit">온라인 상담</h2>
                 <hr>
-                <form action="online.jsp" method="post">
+                <form action="/faq/onlinePro.jsp" method="post">
                     <table class="tb1">
                         <tbody>
                         <tr>
