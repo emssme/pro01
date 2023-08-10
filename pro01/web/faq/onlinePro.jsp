@@ -21,6 +21,10 @@
     p.put("mail.smtp.starttles.enable","true");                                 //smtp 시작시 알려주게 설정
     p.put("mail.smtp.auth","true");                                             //smtp 인증 설정
     p.put("mail.smtp.debug","true");                                            //smtp 디버그 설정
+    //Gmail일 경우 아래 내용 추가
+    //p.put("mail.smtp.ssl.enable", "false");
+    //p.put("mail.smtp.ssl.trust", "smtp.gmail.com");
+    //p.put("mail.smtp.user", email);
     p.put("mail.smtp.socketFactory.port","465");                                //smtp 소켓 포트 설정
     p.put("mail.smtp.socketFactory.class","javax.net.ssl.SSLSocketFactory");    //smtp 소켓 ssl 설정
     p.put("mail.smtp.socketFactory.fallback","false");                          //smtp 소켓 fallback 설정
@@ -53,7 +57,17 @@
         Address toAddr = new InternetAddress(to);   //받는 사람
         msg.addRecipient(Message.RecipientType.TO, toAddr);
 
-        msg.setContent(buffer.toString(), "text/html; charset=UTF-8");
+        /* 받는 사람이 여러 명인 경우
+        String[] addrs = {"ksb450424@naver.com","okgunyang@naver.com", "kkt09072@naver.com", "sunglee0517@naver.com"};
+        Address[] toAddrs = new InternetAddress[4];
+        for(int i=0;i<toAddrs.length;i++){
+            toAddrs[i] = new InternetAddress(addrs[i]);
+        }
+        msg.addRecipients(Message.RecipientType.TO, toAddrs);
+        */
+
+        msg.setContent(buffer.toString(), "text/html; charset=UTF-8"); //메일 내용 추가
+        //msg.setText("이메일 내용"); - 메일 내용이 텍스트로만 가능
 
         Transport.send(msg);    //전송
     } catch (Exception e){
