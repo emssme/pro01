@@ -143,5 +143,8 @@
         </section>
     </div>
 </div>
+<footer class="ft" id="ft">
+    <%@ include file="../footer.jsp"%>
+</footer>
 </body>
 </html>
